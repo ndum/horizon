@@ -37,9 +37,10 @@ class WorkerProcess
      * @param  \Symfony\Component\Process\Process  $process
      * @return void
      */
-    public function __construct($process)
+    public function __construct($process, $once = false)
     {
         $this->process = $process;
+        $this->once = $once;
     }
 
     /**
@@ -52,9 +53,12 @@ class WorkerProcess
     {
         $this->output = $callback;
 
-        $this->cooldown();
-
-        $this->process->start($callback);
+        if ($this->once) {
+            $this->process->start($callback);
+        } else {
+            $this->cooldown();
+            $this->process->start($callback);
+        }
 
         return $this;
     }
