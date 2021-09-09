@@ -57,6 +57,10 @@ class QueueCommandString
         if ($options->force) {
             $string .= ' --force';
         }
+        
+        if ($options->once) {
+            $string .= ' --once';
+        }
 
         if ($paused) {
             $string .= ' --paused';
