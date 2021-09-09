@@ -66,6 +66,13 @@ class SupervisorOptions
      * @var int
      */
     public $nice = 0;
+    
+    /**
+     * Worker processes will only process the next job on the queue and then be re-started
+     *
+     * @var bool
+     */
+    public $once = false;
 
     /**
      * The working directories that new workers should be started from.
